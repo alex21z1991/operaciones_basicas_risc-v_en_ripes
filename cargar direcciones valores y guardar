@@ -1,0 +1,20 @@
+.data
+A: .word 3
+B: .word 4
+
+.text
+.globl main
+main:
+    la x1,A          # cargar dirección de A
+    la x2,B          # cargar dirección de B
+
+    lw x6,0(x1)      # cargar valor de A
+    lw x7,0(x2)      # cargar valor de B
+
+    add x6,x6,x7     # x6 = A + B
+
+    sw x6,0(x1)      # guardar resultado en A
+
+    li x3,21
+
+    ecall
