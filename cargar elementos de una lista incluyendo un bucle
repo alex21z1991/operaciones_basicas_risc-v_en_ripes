@@ -1,0 +1,28 @@
+.data
+A: .word 10,20,30,40
+B: .word 1,2,3,4
+.text
+.globl main
+main:
+    li x1,0      # i=0
+    li x2,4   # tamaño=5
+    la x4,A
+    lw x6,0(x4)      # primer elemento
+    lw x7,4(x4)      # segundo elemento
+    lw x8,8(x4)      # tercer elemento
+#--------------------------------------------------
+    la x12,B
+    for:
+        bge x1,x2,salto
+        lw x13,0(x12)
+        addi x13,x13,1
+        sw x13,0(x12)
+        addi x12,x12,4
+        addi x1,x1,1     # i++
+        j for
+            
+            
+    
+    salto:
+        li a7,10
+        ecall
