@@ -1,1 +1,36 @@
 
+.data
+X: .word 0,0,0,0,0,0,0,0,0,0
+Y: .word 10,9,8,7,6,5,4,3,2,1
+Z: .word 1,2,3,4,5,6,7,8,9,0
+
+.text
+.globl main
+
+main:
+    li x1,0  
+    li x2,10  
+    li x3,0 # r
+    la x4,Y  
+    la x5,Z   
+    la x6,X
+
+while:
+    beq x1,x2,salto   
+    lw x7,0(x4)    
+    lw x8,0(x5)  
+    
+    mul x10,x7,x8
+    add x3,x3,x10
+    
+    sw x3,0(x6)   
+    
+    
+    addi x4,x4,4    
+    addi x5,x5,4    
+    addi x6,x6,4
+    addi x1,x1,1  
+    j while
+
+salto:
+    ecall
